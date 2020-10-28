@@ -62,6 +62,7 @@ namespace Gvips.Domain.Models
         public string AvailableTo { get; set; }
         public List<Media> Photos { get; set; }
         public Document Document { get; set; }
+        public Subscription Subscription { get; set; }
         public DateTime BumpedAt { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
