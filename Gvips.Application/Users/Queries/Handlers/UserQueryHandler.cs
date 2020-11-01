@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gvips.Data.Context;
 using Gvips.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gvips.Application.Users.Queries.Handlers
 {
@@ -15,14 +16,17 @@ namespace Gvips.Application.Users.Queries.Handlers
             _context = context;
         }
 
-        public IEnumerable<User> Handle(GetAllUsers query = null)
+        public IEnumerable<User> Handle()
         {
-            return _context.Users.ToList();
+            return _context.Users.Include(u => u.Posts).ToList();
         }
 
         public User Handle(Guid id)
         {
-            var user = _context.Users.Find(id);
+            var user = _context.Users
+                .Include(u => u.Posts)
+                .FirstOrDefault(u => u.Id == id);
+
             return user;
         }
     }

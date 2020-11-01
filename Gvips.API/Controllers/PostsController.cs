@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gvips.Application.Posts.Commands;
 using Gvips.Application.Posts.Commands.Handlers;
 using Gvips.Application.Posts.Queries;
@@ -33,6 +34,24 @@ namespace Gvips.API.Controllers
         public ActionResult<Post> GetById(Guid id)
         {
             return _query.Handle(new ListPost {Id = id});
+        }
+
+        [HttpGet("city/{city}")]
+        public ActionResult<IQueryable<Post>> GetByCity(string city)
+        {
+            return Ok(_query.Handle(new PostByCity {City = city}));
+        }
+
+        [HttpGet("state/{state}")]
+        public ActionResult<IQueryable<Post>> GetByState(string state)
+        {
+            return Ok(_query.Handle(new PostByState {State = state}));
+        }
+
+        [HttpGet("country/{country}")]
+        public ActionResult<IQueryable<Post>> GetByCountry(string country)
+        {
+            return Ok(_query.Handle(new PostByCountry { Country = country}));
         }
 
         [HttpPost]
