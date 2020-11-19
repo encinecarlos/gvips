@@ -29,5 +29,10 @@ namespace Gvips.Application.Users.Queries.Handlers
 
             return user;
         }
+
+        public User Handle(GetUsername username)
+        {
+            return _context.Users.Single(u => u.UserName == username.Username);
+        } 
     }
 }

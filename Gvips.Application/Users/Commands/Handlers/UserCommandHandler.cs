@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Gvips.Data.Context;
 using Gvips.Domain.Models;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Gvips.Application.Users.Commands.Handlers
 {
@@ -15,11 +19,14 @@ namespace Gvips.Application.Users.Commands.Handlers
 
         public void Handle(CreateUser command)
         {
+            using var hmac = new HMACSHA512();
+
             var user = new User
             {
                 UserName = command.UserName,
                 Email = command.Email,
-                Password = command.Password
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(command.Password)),
+                PasswordSalt = hmac.Key
             };
             
             command.Id = user.Id;
@@ -34,7 +41,7 @@ namespace Gvips.Application.Users.Commands.Handlers
 
             user.UserName = command.UserName ?? user.UserName;
             user.Email = command.Email ?? user.Email;
-            user.Password = command.Password ?? user.Password;
+            //user.Password = command.Password ?? user.Password;
             user.Avatar = command.Avatar ?? user.Avatar;
 
             _context.SaveChanges();

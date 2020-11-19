@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gvips.Data", "Gvips.Data\Gvips.Data.csproj", "{AD6FA372-D30A-4247-B44C-1A3AB56C7E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gvips.Data", "Gvips.Data\Gvips.Data.csproj", "{AD6FA372-D30A-4247-B44C-1A3AB56C7E81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gvips.Domain", "Gvips.Domain\Gvips.Domain.csproj", "{CDE59210-67AB-46C8-B3B1-4E72593EC172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gvips.Domain", "Gvips.Domain\Gvips.Domain.csproj", "{CDE59210-67AB-46C8-B3B1-4E72593EC172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gvips.API", "Gvips.API\Gvips.API.csproj", "{EF080A4D-00E0-4AF0-83D1-ACD640193532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gvips.API", "Gvips.API\Gvips.API.csproj", "{EF080A4D-00E0-4AF0-83D1-ACD640193532}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gvips.Application", "Gvips.Application\Gvips.Application.csproj", "{079A9043-9C17-4302-88B0-55759BBADEB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gvips.Application", "Gvips.Application\Gvips.Application.csproj", "{079A9043-9C17-4302-88B0-55759BBADEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
