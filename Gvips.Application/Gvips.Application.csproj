@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Gvips.Data\Gvips.Data.csproj" />
     <ProjectReference Include="..\Gvips.Domain\Gvips.Domain.csproj" />
   </ItemGroup>

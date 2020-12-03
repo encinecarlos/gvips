@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Gvips.API.Configurations;
 using Gvips.API.Interfaces;
 using Gvips.API.Services;
 using Gvips.Application.Posts.Commands.Handlers;
@@ -13,15 +11,11 @@ using Gvips.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using MySqlConnector;
 
 namespace Gvips.API
 {
@@ -42,8 +36,7 @@ namespace Gvips.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<LoginService>();
+            
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -60,11 +53,8 @@ namespace Gvips.API
             services.AddControllers();
 
             services.AddCors();
-
-            services.AddScoped<UserCommandHandler>();
-            services.AddScoped<UserQueryHandler>();
-            services.AddScoped<PostCommandHandler>();
-            services.AddScoped<PostQueryHandler>();
+            services.AddAutoMapper(typeof(Startup));
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +69,7 @@ namespace Gvips.API
 
             app.UseRouting();
 
-            app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000"));
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 
             app.UseAuthentication();
 
